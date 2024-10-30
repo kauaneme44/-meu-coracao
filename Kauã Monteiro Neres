@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Coração Animado</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="coracao"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+
+.coracao {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: relative;
+  transform: rotate(-45deg);
+  animation: mover 5s infinite alternate;
+}
+
+/* Metade superior do coração */
+.coracao::before,
+.coracao::after {
+  content: "";
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.coracao::before {
+  top: -50px;
+  left: 0;
+}
+
+.coracao::after {
+  top: 0;
+  left: -50px;
+}
+
+/* Animação de movimento */
+@keyframes mover {
+  0% { transform: translate(0, 0) rotate(-45deg); }
+  50% { transform: translate(200px, 150px) rotate(-45deg); }
+  100% { transform: translate(-200px, -150px) rotate(-45deg); }
+}
+// Opcional: Modifica a velocidade da animação ao clicar no coração
+const coracao = document.querySelector('.coracao');
+coracao.addEventListener('click', () => {
+  coracao.style.animationDuration = '2s';
+});
